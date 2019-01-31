@@ -13,7 +13,7 @@ export declare class FontAwesomeIconCustomElement {
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/bordered-pulled-icons}
      */
-    border: boolean;
+    border: boolean | 'true' | 'false';
     /**
      * Your own class name that will be added to the SVGElement
      */
@@ -21,14 +21,14 @@ export declare class FontAwesomeIconCustomElement {
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/fixed-width-icons}
      */
-    fixedWidth: boolean;
+    fixedWidth: boolean | 'true' | 'false';
     flip: 'horizontal' | 'vertical' | 'both';
     icon: BoundIconArg;
-    inverse: boolean;
+    inverse: boolean | 'true' | 'false';
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/icons-in-a-list}
      */
-    listItem: boolean;
+    listItem: boolean | 'true' | 'false';
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/masking}
      */
@@ -37,11 +37,11 @@ export declare class FontAwesomeIconCustomElement {
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/animating-icons}
      */
-    pulse: boolean;
+    pulse: boolean | 'true' | 'false';
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/rotating-icons}
      */
-    rotation?: 90 | 180 | 270;
+    rotation?: 90 | 180 | 270 | '90' | '180' | '270';
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/sizing-icons}
      */
@@ -49,7 +49,7 @@ export declare class FontAwesomeIconCustomElement {
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/animating-icons}
      */
-    spin: boolean;
+    spin: boolean | 'true' | 'false';
     style: any;
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/advanced/svg-symbols}
