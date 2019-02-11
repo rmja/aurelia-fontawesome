@@ -1,6 +1,5 @@
 import { AbstractElement, IconDefinition, IconName, IconPrefix, Transform } from '@fortawesome/fontawesome-svg-core';
 import { Container, OverrideContext, ViewCompiler, ViewResources } from 'aurelia-framework';
-
 declare type BoundIconArg = IconDefinition | IconName | Array<IconName | IconPrefix>;
 declare type PullArg = 'right' | 'left';
 declare type RotationArg = 90 | 180 | 270;
@@ -30,7 +29,7 @@ export declare class FontAwesomeIconCustomElement {
     fixedWidth: boolean;
     flip: FlipArg;
     icon: BoundIconArg;
-    inverse: boolean | 'true' | 'false';
+    inverse: boolean;
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/icons-in-a-list}
      */
@@ -55,7 +54,7 @@ export declare class FontAwesomeIconCustomElement {
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/animating-icons}
      */
-    spin: boolean | 'true' | 'false';
+    spin: boolean;
     style: any;
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/advanced/svg-symbols}

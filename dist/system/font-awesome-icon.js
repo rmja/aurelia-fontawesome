@@ -1,4 +1,4 @@
-System.register(["aurelia-framework", "@fortawesome/fontawesome-svg-core", "./utils", "./converter"], function (exports_1, context_1) {
+System.register(["@fortawesome/fontawesome-svg-core", "aurelia-framework", "./converter", "./utils"], function (exports_1, context_1) {
     "use strict";
     var __assign = (this && this.__assign) || function () {
         __assign = Object.assign || function(t) {
@@ -17,7 +17,7 @@ System.register(["aurelia-framework", "@fortawesome/fontawesome-svg-core", "./ut
         else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    var aurelia_framework_1, fontawesome_svg_core_1, utils_1, converter_1, FontAwesomeIconCustomElement;
+    var fontawesome_svg_core_1, aurelia_framework_1, converter_1, utils_1, FontAwesomeIconCustomElement;
     var __moduleName = context_1 && context_1.id;
     function normalizeIconArgs(icon) {
         if (icon == null) {
@@ -36,17 +36,17 @@ System.register(["aurelia-framework", "@fortawesome/fontawesome-svg-core", "./ut
     }
     return {
         setters: [
-            function (aurelia_framework_1_1) {
-                aurelia_framework_1 = aurelia_framework_1_1;
-            },
             function (fontawesome_svg_core_1_1) {
                 fontawesome_svg_core_1 = fontawesome_svg_core_1_1;
             },
-            function (utils_1_1) {
-                utils_1 = utils_1_1;
+            function (aurelia_framework_1_1) {
+                aurelia_framework_1 = aurelia_framework_1_1;
             },
             function (converter_1_1) {
                 converter_1 = converter_1_1;
+            },
+            function (utils_1_1) {
+                utils_1 = utils_1_1;
             }
         ],
         execute: function () {

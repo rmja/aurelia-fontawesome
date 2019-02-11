@@ -17,10 +17,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var aurelia_framework_1 = require("aurelia-framework");
 var fontawesome_svg_core_1 = require("@fortawesome/fontawesome-svg-core");
-var utils_1 = require("./utils");
+var aurelia_framework_1 = require("aurelia-framework");
 var converter_1 = require("./converter");
+var utils_1 = require("./utils");
 function normalizeIconArgs(icon) {
     if (icon == null) {
         return null;
