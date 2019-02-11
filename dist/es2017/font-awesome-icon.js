@@ -72,14 +72,14 @@ let FontAwesomeIconCustomElement = class FontAwesomeIconCustomElement {
         this.bindingContext = bindingContext;
         this.overrideContext = createOverrideContext(bindingContext, overrideContext);
         this.classes = {
-            'fa-border': this.border.toString() === 'true',
+            'fa-border': this.border && this.border.toString() === 'true',
             'fa-flip-horizontal': this.flip === 'horizontal' || this.flip === 'both',
             'fa-flip-vertical': this.flip === 'vertical' || this.flip === 'both',
-            'fa-fw': this.fixedWidth.toString() === 'true',
-            'fa-inverse': this.inverse.toString() === 'true',
-            'fa-li': this.listItem.toString() === 'true',
-            'fa-pulse': this.pulse.toString() === 'true',
-            'fa-spin': this.spin.toString() === 'true',
+            'fa-fw': this.fixedWidth && this.fixedWidth.toString() === 'true',
+            'fa-inverse': this.inverse && this.inverse.toString() === 'true',
+            'fa-li': this.listItem && this.listItem.toString() === 'true',
+            'fa-pulse': this.pulse && this.pulse.toString() === 'true',
+            'fa-spin': this.spin && this.spin.toString() === 'true',
             [`fa-${this.size}`]: !!this.size,
             [`fa-pull-${this.pull}`]: !!this.pull,
             [`fa-rotate-${this.rotation}`]: !!this.rotation,
@@ -118,48 +118,53 @@ let FontAwesomeIconCustomElement = class FontAwesomeIconCustomElement {
         this.detached();
         this.attached();
     }
-    borderChanged(value) {
-        this.cleanAndSetClass(value && 'fa-border', 'fa-border');
+    propertyChanged(name, newValue, oldValue) {
+        const nameof = (name) => name;
+        switch (name) {
+            case nameof('border'):
+                this.replaceClass(newValue && 'fa-border', oldValue && 'fa-border');
+                break;
+            case nameof('flip'):
+                this.replaceClass((newValue === 'horizontal' || newValue === 'both') && 'fa-flip-horizontal', oldValue && 'fa-flip-horizontal');
+                this.replaceClass((newValue === 'vertical' || newValue === 'both') && 'fa-flip-vertical', oldValue && 'fa-flip-vertical');
+                break;
+            case nameof('fixedWidth'):
+                this.replaceClass(newValue && 'fa-fw', oldValue && 'fa-fw');
+                break;
+            case nameof('inverse'):
+                this.replaceClass(newValue && 'fa-inverse', oldValue && 'fa-inverse');
+                break;
+            case nameof('listItem'):
+                this.replaceClass(newValue && 'fa-li', oldValue && 'fa-li');
+                break;
+            case nameof('pulse'):
+                this.replaceClass(newValue && 'fa-pulse', oldValue && 'fa-pulse');
+                break;
+            case nameof('spin'):
+                this.replaceClass(newValue && 'fa-spin', oldValue && 'fa-spin');
+                break;
+            case nameof('size'):
+                this.replaceClass(newValue && `fa-${newValue}`, oldValue && `fa-${oldValue}`);
+                break;
+            case nameof('pull'):
+                this.replaceClass(newValue && `fa-pull-${newValue}`, oldValue && `fa-pull-${oldValue}`);
+                break;
+            case nameof('rotation'):
+                this.replaceClass(newValue && `fa-pull-${newValue}`, oldValue && `fa-pull-${oldValue}`);
+                break;
+            case nameof('stack'):
+                this.replaceClass(newValue && `fa-stack-${newValue}`, oldValue && `fa-stack-${oldValue}`);
+                break;
+        }
     }
-    flipChanged(value) {
-        this.cleanAndSetClass((value === 'horizontal' || value === 'both') && 'fa-flip-horizontal', 'fa-flip-horizontal');
-        this.cleanAndSetClass((value === 'vertical' || value === 'both') && 'fa-flip-vertical', 'fa-flip-vertical');
-    }
-    fixedWidthChanged(value) {
-        this.cleanAndSetClass(value && 'fa-fw', 'fa-fw');
-    }
-    inverseChanged(value) {
-        this.cleanAndSetClass(value && 'fa-inverse', 'fa-inverse');
-    }
-    listItemChanged(value) {
-        this.cleanAndSetClass(value && 'fa-li', 'fa-li');
-    }
-    pulseChanged(value) {
-        this.cleanAndSetClass(value && 'fa-pulse', 'fa-pulse');
-    }
-    spinChanged(value) {
-        this.cleanAndSetClass(value && 'fa-spin', 'fa-spin');
-    }
-    sizeChanged(newValue, oldValue) {
-        this.cleanAndSetClass(newValue && `fa-${newValue}`, oldValue && `fa-${oldValue}`);
-    }
-    pullChanged(newValue, oldValue) {
-        this.cleanAndSetClass(newValue && `fa-pull-${newValue}`, oldValue && `fa-pull-${oldValue}`);
-    }
-    rotationChanged(newValue, oldValue) {
-        this.cleanAndSetClass(newValue && `fa-rotate-${newValue}`, oldValue && `fa-rotate-${oldValue}`);
-    }
-    stackChanged(newValue, oldValue) {
-        this.cleanAndSetClass(newValue && `fa-stack-${newValue}`, oldValue && `fa-stack-${oldValue}`);
-    }
-    cleanAndSetClass(newClass, cleanClass) {
+    replaceClass(newClass, oldClass) {
         const svgElement = this.$element.querySelector('svg');
         if (!svgElement) {
             this.logger.error('Unable to find svg element');
             return;
         }
-        if (cleanClass && newClass !== cleanClass && svgElement.classList.contains(cleanClass)) {
-            svgElement.classList.remove(cleanClass);
+        if (oldClass && newClass !== oldClass && svgElement.classList.contains(oldClass)) {
+            svgElement.classList.remove(oldClass);
         }
         if (newClass) {
             svgElement.classList.add(newClass);

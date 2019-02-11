@@ -79,18 +79,8 @@ export declare class FontAwesomeIconCustomElement {
     attached(): void;
     detached(): void;
     protected replaceIcon(): void;
-    protected borderChanged(value?: boolean): void;
-    protected flipChanged(value?: FlipArg): void;
-    protected fixedWidthChanged(value?: boolean): void;
-    protected inverseChanged(value?: boolean): void;
-    protected listItemChanged(value?: boolean): void;
-    protected pulseChanged(value?: boolean): void;
-    protected spinChanged(value?: boolean): void;
-    protected sizeChanged(newValue?: SizeArg, oldValue?: SizeArg): void;
-    protected pullChanged(newValue?: PullArg, oldValue?: PullArg): void;
-    protected rotationChanged(newValue?: RotationArg, oldValue?: RotationArg): void;
-    protected stackChanged(newValue?: StackArg, oldValue?: StackArg): void;
-    private cleanAndSetClass;
+    protected propertyChanged(name: string, newValue: any, oldValue: any): void;
+    private replaceClass;
     protected compile(abstract: AbstractElement): void;
     /**
      * Get all non aurelia and non bound attributes and pass it to the
