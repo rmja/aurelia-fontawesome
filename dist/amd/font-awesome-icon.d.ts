@@ -1,5 +1,6 @@
-import { Container, OverrideContext, ViewCompiler, ViewResources } from 'aurelia-framework';
 import { AbstractElement, IconDefinition, IconName, IconPrefix, Transform } from '@fortawesome/fontawesome-svg-core';
+import { Container, OverrideContext, ViewCompiler, ViewResources } from 'aurelia-framework';
+
 declare type BoundIconArg = IconDefinition | IconName | Array<IconName | IconPrefix>;
 declare type PullArg = 'right' | 'left';
 declare type RotationArg = 90 | 180 | 270;
@@ -18,7 +19,7 @@ export declare class FontAwesomeIconCustomElement {
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/bordered-pulled-icons}
      */
-    border: boolean;
+    border: boolean | 'true' | 'false';
     /**
      * Your own class name that will be added to the SVGElement
      */
@@ -29,11 +30,11 @@ export declare class FontAwesomeIconCustomElement {
     fixedWidth: boolean;
     flip: FlipArg;
     icon: BoundIconArg;
-    inverse: boolean;
+    inverse: boolean | 'true' | 'false';
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/icons-in-a-list}
      */
-    listItem: boolean;
+    listItem: boolean | 'true' | 'false';
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/masking}
      */
@@ -42,7 +43,7 @@ export declare class FontAwesomeIconCustomElement {
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/animating-icons}
      */
-    pulse: boolean;
+    pulse: boolean | 'true' | 'false';
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/rotating-icons}
      */
@@ -54,7 +55,7 @@ export declare class FontAwesomeIconCustomElement {
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/animating-icons}
      */
-    spin: boolean;
+    spin: boolean | 'true' | 'false';
     style: any;
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/advanced/svg-symbols}

@@ -1,4 +1,14 @@
 import {
+  AbstractElement,
+  IconDefinition,
+  IconLookup,
+  IconName,
+  IconPrefix,
+  Transform,
+  icon,
+  parse
+} from '@fortawesome/fontawesome-svg-core';
+import {
   Container,
   DOM,
   LogManager,
@@ -11,18 +21,9 @@ import {
   customElement,
   noView
 } from 'aurelia-framework';
-import {
-  AbstractElement,
-  IconDefinition,
-  IconLookup,
-  IconName,
-  IconPrefix,
-  Transform,
-  icon,
-  parse
-} from '@fortawesome/fontawesome-svg-core';
-import { objectWithKey } from './utils';
+
 import convert from './converter';
+import { objectWithKey } from './utils';
 
 type BoundIconArg = IconDefinition | IconName | Array<IconName | IconPrefix>;
 type PullArg = 'right' | 'left';
@@ -59,7 +60,7 @@ export class FontAwesomeIconCustomElement {
   /**
    * {@link https://fontawesome.com/how-to-use/on-the-web/styling/bordered-pulled-icons}
    */
-  @bindable public border: boolean = false;
+  @bindable public border: boolean | 'true' | 'false' = false;
   /**
    * Your own class name that will be added to the SVGElement
    */
@@ -74,7 +75,7 @@ export class FontAwesomeIconCustomElement {
   /**
    * {@link https://fontawesome.com/how-to-use/on-the-web/styling/icons-in-a-list}
    */
-  @bindable public listItem: boolean = false;
+  @bindable public listItem: boolean | 'true' | 'false' = false;
   /**
    * {@link https://fontawesome.com/how-to-use/on-the-web/styling/masking}
    */
@@ -83,7 +84,7 @@ export class FontAwesomeIconCustomElement {
   /**
    * {@link https://fontawesome.com/how-to-use/on-the-web/styling/animating-icons}
    */
-  @bindable public pulse: boolean = false;
+  @bindable public pulse: boolean | 'true' | 'false' = false;
   /**
    * {@link https://fontawesome.com/how-to-use/on-the-web/styling/rotating-icons}
    */
@@ -127,14 +128,14 @@ export class FontAwesomeIconCustomElement {
     this.overrideContext = createOverrideContext(bindingContext, overrideContext);
 
     this.classes = {
-      'fa-border': this.border,
+      'fa-border': this.border.toString() === 'true',
       'fa-flip-horizontal': this.flip === 'horizontal' || this.flip === 'both',
       'fa-flip-vertical': this.flip === 'vertical' || this.flip === 'both',
-      'fa-fw': this.fixedWidth,
-      'fa-inverse': this.inverse,
-      'fa-li': this.listItem,
-      'fa-pulse': this.pulse,
-      'fa-spin': this.spin,
+      'fa-fw': this.fixedWidth.toString() === 'true',
+      'fa-inverse': this.inverse.toString() === 'true',
+      'fa-li': this.listItem.toString() === 'true',
+      'fa-pulse': this.pulse.toString() === 'true',
+      'fa-spin': this.spin.toString() === 'true',
       [`fa-${this.size}`]: !!this.size,
       [`fa-pull-${this.pull}`]: !!this.pull,
       [`fa-rotate-${this.rotation}`]: !!this.rotation,
