@@ -183,9 +183,9 @@ var FontAwesomeIconCustomElement = /** @class */ (function () {
     };
     FontAwesomeIconCustomElement.prototype.compile = function (abstract) {
         var $icon = convert(DOM.createElement.bind(DOM), abstract);
-        var $template = DOM.createElement('template');
-        $template.innerHTML = $icon.outerHTML;
-        var factory = this.viewCompiler.compile($template, this.resources);
+        var $i = DOM.createElement('i');
+        $i.innerHTML = $icon.outerHTML;
+        var factory = this.viewCompiler.compile($i, this.resources);
         var view = factory.create(this.container, this.bindingContext);
         this.slot.add(view);
         this.slot.bind(this.bindingContext, this.overrideContext);

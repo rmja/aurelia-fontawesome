@@ -185,9 +185,9 @@ var FontAwesomeIconCustomElement = /** @class */ (function () {
     };
     FontAwesomeIconCustomElement.prototype.compile = function (abstract) {
         var $icon = converter_1.default(aurelia_framework_1.DOM.createElement.bind(aurelia_framework_1.DOM), abstract);
-        var $template = aurelia_framework_1.DOM.createElement('template');
-        $template.innerHTML = $icon.outerHTML;
-        var factory = this.viewCompiler.compile($template, this.resources);
+        var $i = aurelia_framework_1.DOM.createElement('i');
+        $i.innerHTML = $icon.outerHTML;
+        var factory = this.viewCompiler.compile($i, this.resources);
         var view = factory.create(this.container, this.bindingContext);
         this.slot.add(view);
         this.slot.bind(this.bindingContext, this.overrideContext);
