@@ -15,8 +15,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { icon, parse } from '@fortawesome/fontawesome-svg-core';
 import { Container, DOM, LogManager, ViewCompiler, ViewResources, ViewSlot, bindable, createOverrideContext, customElement, noView } from 'aurelia-framework';
+import { icon, parse } from '@fortawesome/fontawesome-svg-core';
 import convert from './converter';
 import { objectWithKey } from './utils';
 function normalizeIconArgs(icon) {
@@ -100,8 +100,71 @@ var FontAwesomeIconCustomElement = /** @class */ (function () {
             _a);
     };
     FontAwesomeIconCustomElement.prototype.attached = function () {
+        this.compiledIcon = this.compileIcon();
+    };
+    FontAwesomeIconCustomElement.prototype.detached = function () {
+        if (this.compiledIcon) {
+            this.compiledIcon.dispose();
+        }
+    };
+    FontAwesomeIconCustomElement.prototype.propertyChanged = function (name, newValue, oldValue) {
+        if (!this.compiledIcon) {
+            // Icon is not yet compiled as attached() is not called
+            return;
+        }
+        var nameof = function (name) { return name; };
+        var $icon = this.compiledIcon.$icon;
+        switch (name) {
+            case nameof('border'):
+                this.replaceClass($icon, newValue && 'fa-border', oldValue && 'fa-border');
+                break;
+            case nameof('flip'):
+                this.replaceClass($icon, (newValue === 'horizontal' || newValue === 'both') && 'fa-flip-horizontal', oldValue && 'fa-flip-horizontal');
+                this.replaceClass($icon, (newValue === 'vertical' || newValue === 'both') && 'fa-flip-vertical', oldValue && 'fa-flip-vertical');
+                break;
+            case nameof('fixedWidth'):
+                this.replaceClass($icon, newValue && 'fa-fw', oldValue && 'fa-fw');
+                break;
+            case nameof('inverse'):
+                this.replaceClass($icon, newValue && 'fa-inverse', oldValue && 'fa-inverse');
+                break;
+            case nameof('listItem'):
+                this.replaceClass($icon, newValue && 'fa-li', oldValue && 'fa-li');
+                break;
+            case nameof('pulse'):
+                this.replaceClass($icon, newValue && 'fa-pulse', oldValue && 'fa-pulse');
+                break;
+            case nameof('spin'):
+                this.replaceClass($icon, newValue && 'fa-spin', oldValue && 'fa-spin');
+                break;
+            case nameof('size'):
+                this.replaceClass($icon, newValue && "fa-" + newValue, oldValue && "fa-" + oldValue);
+                break;
+            case nameof('pull'):
+                this.replaceClass($icon, newValue && "fa-pull-" + newValue, oldValue && "fa-pull-" + oldValue);
+                break;
+            case nameof('rotation'):
+                this.replaceClass($icon, newValue && "fa-pull-" + newValue, oldValue && "fa-pull-" + oldValue);
+                break;
+            case nameof('stack'):
+                this.replaceClass($icon, newValue && "fa-stack-" + newValue, oldValue && "fa-stack-" + oldValue);
+                break;
+            default:
+                this.compiledIcon.dispose();
+                this.compiledIcon = this.compileIcon();
+                break;
+        }
+    };
+    FontAwesomeIconCustomElement.prototype.replaceClass = function (element, newClass, oldClass) {
+        if (oldClass && newClass !== oldClass && element.classList.contains(oldClass)) {
+            element.classList.remove(oldClass);
+        }
+        if (newClass) {
+            element.classList.add(newClass);
+        }
+    };
+    FontAwesomeIconCustomElement.prototype.compileIcon = function () {
         var _this = this;
-        this.slot = new ViewSlot(this.$element, true);
         var iconLookup = normalizeIconArgs(this.icon);
         if (iconLookup === null) {
             this.logger.error('Bound icon prop is either unsupported or null', this.icon);
@@ -115,78 +178,23 @@ var FontAwesomeIconCustomElement = /** @class */ (function () {
         var renderedIcon = icon(iconLookup, __assign({}, classes, transform, mask, { attributes: this.getOtherAttributes(), styles: this.style, symbol: this.symbol, title: this.title }));
         if (!renderedIcon) {
             this.logger.error('Could not find icon', iconLookup);
+            return;
         }
-        else {
-            this.compile(renderedIcon.abstract[0]);
-        }
-    };
-    FontAwesomeIconCustomElement.prototype.detached = function () {
-        this.slot.detached();
-        this.slot.unbind();
-        this.slot.removeAll();
-    };
-    FontAwesomeIconCustomElement.prototype.propertyChanged = function (name, newValue, oldValue) {
-        var nameof = function (name) { return name; };
-        switch (name) {
-            case nameof('border'):
-                this.replaceClass(newValue && 'fa-border', oldValue && 'fa-border');
-                break;
-            case nameof('flip'):
-                this.replaceClass((newValue === 'horizontal' || newValue === 'both') && 'fa-flip-horizontal', oldValue && 'fa-flip-horizontal');
-                this.replaceClass((newValue === 'vertical' || newValue === 'both') && 'fa-flip-vertical', oldValue && 'fa-flip-vertical');
-                break;
-            case nameof('fixedWidth'):
-                this.replaceClass(newValue && 'fa-fw', oldValue && 'fa-fw');
-                break;
-            case nameof('inverse'):
-                this.replaceClass(newValue && 'fa-inverse', oldValue && 'fa-inverse');
-                break;
-            case nameof('listItem'):
-                this.replaceClass(newValue && 'fa-li', oldValue && 'fa-li');
-                break;
-            case nameof('pulse'):
-                this.replaceClass(newValue && 'fa-pulse', oldValue && 'fa-pulse');
-                break;
-            case nameof('spin'):
-                this.replaceClass(newValue && 'fa-spin', oldValue && 'fa-spin');
-                break;
-            case nameof('size'):
-                this.replaceClass(newValue && "fa-" + newValue, oldValue && "fa-" + oldValue);
-                break;
-            case nameof('pull'):
-                this.replaceClass(newValue && "fa-pull-" + newValue, oldValue && "fa-pull-" + oldValue);
-                break;
-            case nameof('rotation'):
-                this.replaceClass(newValue && "fa-pull-" + newValue, oldValue && "fa-pull-" + oldValue);
-                break;
-            case nameof('stack'):
-                this.replaceClass(newValue && "fa-stack-" + newValue, oldValue && "fa-stack-" + oldValue);
-                break;
-            default:
-                if (this.slot) {
-                    this.detached();
-                    this.attached();
-                }
-                break;
-        }
-    };
-    FontAwesomeIconCustomElement.prototype.replaceClass = function (newClass, oldClass) {
-        if (oldClass && newClass !== oldClass && this.$icon.classList.contains(oldClass)) {
-            this.$icon.classList.remove(oldClass);
-        }
-        if (newClass) {
-            this.$icon.classList.add(newClass);
-        }
-    };
-    FontAwesomeIconCustomElement.prototype.compile = function (abstract) {
-        this.$icon = convert(DOM.createElement.bind(DOM), abstract);
-        var $i = DOM.createElement('i');
-        $i.innerHTML = this.$icon.outerHTML;
-        var factory = this.viewCompiler.compile($i, this.resources);
+        var abstract = renderedIcon.abstract[0];
+        var $icon = convert(DOM.createElement.bind(DOM), abstract);
+        var template = "<template>" + $icon.outerHTML + "</template>";
+        var factory = this.viewCompiler.compile(template, this.resources);
         var view = factory.create(this.container, this.bindingContext);
-        this.slot.add(view);
-        this.slot.bind(this.bindingContext, this.overrideContext);
-        this.slot.attached();
+        var slot = new ViewSlot(this.$element, true);
+        slot.add(view);
+        view.bind(this.bindingContext, this.overrideContext);
+        return {
+            $icon: $icon,
+            dispose: function () {
+                slot.remove(view);
+                view.unbind();
+            }
+        };
     };
     /**
      * Get all non aurelia and non bound attributes and pass it to the
