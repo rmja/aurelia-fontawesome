@@ -114,10 +114,6 @@ let FontAwesomeIconCustomElement = class FontAwesomeIconCustomElement {
         this.slot.unbind();
         this.slot.removeAll();
     }
-    replaceIcon() {
-        this.detached();
-        this.attached();
-    }
     propertyChanged(name, newValue, oldValue) {
         const nameof = (name) => name;
         switch (name) {
@@ -154,6 +150,12 @@ let FontAwesomeIconCustomElement = class FontAwesomeIconCustomElement {
                 break;
             case nameof('stack'):
                 this.replaceClass(newValue && `fa-stack-${newValue}`, oldValue && `fa-stack-${oldValue}`);
+                break;
+            default:
+                if (this.slot) {
+                    this.detached();
+                    this.attached();
+                }
                 break;
         }
     }
@@ -212,7 +214,7 @@ __decorate([
     bindable
 ], FontAwesomeIconCustomElement.prototype, "flip", void 0);
 __decorate([
-    bindable({ changeHandler: 'replaceIcon' })
+    bindable
 ], FontAwesomeIconCustomElement.prototype, "icon", void 0);
 __decorate([
     bindable
@@ -221,7 +223,7 @@ __decorate([
     bindable
 ], FontAwesomeIconCustomElement.prototype, "listItem", void 0);
 __decorate([
-    bindable({ changeHandler: 'replaceIcon' })
+    bindable
 ], FontAwesomeIconCustomElement.prototype, "mask", void 0);
 __decorate([
     bindable
@@ -239,22 +241,22 @@ __decorate([
     bindable
 ], FontAwesomeIconCustomElement.prototype, "spin", void 0);
 __decorate([
-    bindable({ changeHandler: 'replaceIcon' })
+    bindable
 ], FontAwesomeIconCustomElement.prototype, "style", void 0);
 __decorate([
-    bindable({ changeHandler: 'replaceIcon' })
+    bindable
 ], FontAwesomeIconCustomElement.prototype, "symbol", void 0);
 __decorate([
-    bindable({ changeHandler: 'replaceIcon' })
+    bindable
 ], FontAwesomeIconCustomElement.prototype, "title", void 0);
 __decorate([
-    bindable({ changeHandler: 'replaceIcon' })
+    bindable
 ], FontAwesomeIconCustomElement.prototype, "transform", void 0);
 __decorate([
     bindable
 ], FontAwesomeIconCustomElement.prototype, "stack", void 0);
 FontAwesomeIconCustomElement = __decorate([
-    customElement('font-awesome-icon'),
+    customElement('font-awesome-icon-classes'),
     noView()
 ], FontAwesomeIconCustomElement);
 export { FontAwesomeIconCustomElement };

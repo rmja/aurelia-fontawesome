@@ -1,11 +1,6 @@
 import { AbstractElement, IconDefinition, IconName, IconPrefix, Transform } from '@fortawesome/fontawesome-svg-core';
 import { Container, OverrideContext, ViewCompiler, ViewResources } from 'aurelia-framework';
 declare type BoundIconArg = IconDefinition | IconName | Array<IconName | IconPrefix>;
-declare type PullArg = 'right' | 'left';
-declare type RotationArg = 90 | 180 | 270;
-declare type FlipArg = 'horizontal' | 'vertical' | 'both';
-declare type SizeArg = 'lg' | 'xs' | 'sm' | '1x' | '2x' | '3x' | '4x' | '5x' | '6x' | '7x' | '8x' | '9x' | '10x';
-declare type StackArg = '1x' | '2x';
 export declare class FontAwesomeIconCustomElement {
     private $element;
     private container;
@@ -27,7 +22,7 @@ export declare class FontAwesomeIconCustomElement {
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/fixed-width-icons}
      */
     fixedWidth: boolean;
-    flip: FlipArg;
+    flip: 'horizontal' | 'vertical' | 'both';
     icon: BoundIconArg;
     inverse: boolean;
     /**
@@ -38,7 +33,7 @@ export declare class FontAwesomeIconCustomElement {
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/masking}
      */
     mask?: BoundIconArg;
-    pull: PullArg;
+    pull: 'right' | 'left';
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/animating-icons}
      */
@@ -46,11 +41,11 @@ export declare class FontAwesomeIconCustomElement {
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/rotating-icons}
      */
-    rotation?: RotationArg;
+    rotation?: 90 | 180 | 270;
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/sizing-icons}
      */
-    size?: SizeArg;
+    size?: 'lg' | 'xs' | 'sm' | '1x' | '2x' | '3x' | '4x' | '5x' | '6x' | '7x' | '8x' | '9x' | '10x';
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/animating-icons}
      */
@@ -68,7 +63,7 @@ export declare class FontAwesomeIconCustomElement {
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/stacking-icons}
      */
-    stack?: StackArg;
+    stack?: '1x' | '2x';
     private bindingContext;
     private overrideContext;
     private classes;
@@ -78,7 +73,6 @@ export declare class FontAwesomeIconCustomElement {
     bind(bindingContext: any, overrideContext: OverrideContext): void;
     attached(): void;
     detached(): void;
-    protected replaceIcon(): void;
     protected propertyChanged(name: string, newValue: any, oldValue: any): void;
     private replaceClass;
     protected compile(abstract: AbstractElement): void;

@@ -141,10 +141,6 @@ System.register(["@fortawesome/fontawesome-svg-core", "aurelia-framework", "./co
                     this.slot.unbind();
                     this.slot.removeAll();
                 };
-                FontAwesomeIconCustomElement.prototype.replaceIcon = function () {
-                    this.detached();
-                    this.attached();
-                };
                 FontAwesomeIconCustomElement.prototype.propertyChanged = function (name, newValue, oldValue) {
                     var nameof = function (name) { return name; };
                     switch (name) {
@@ -181,6 +177,12 @@ System.register(["@fortawesome/fontawesome-svg-core", "aurelia-framework", "./co
                             break;
                         case nameof('stack'):
                             this.replaceClass(newValue && "fa-stack-" + newValue, oldValue && "fa-stack-" + oldValue);
+                            break;
+                        default:
+                            if (this.slot) {
+                                this.detached();
+                                this.attached();
+                            }
                             break;
                     }
                 };
@@ -238,7 +240,7 @@ System.register(["@fortawesome/fontawesome-svg-core", "aurelia-framework", "./co
                     aurelia_framework_1.bindable
                 ], FontAwesomeIconCustomElement.prototype, "flip", void 0);
                 __decorate([
-                    aurelia_framework_1.bindable({ changeHandler: 'replaceIcon' })
+                    aurelia_framework_1.bindable
                 ], FontAwesomeIconCustomElement.prototype, "icon", void 0);
                 __decorate([
                     aurelia_framework_1.bindable
@@ -247,7 +249,7 @@ System.register(["@fortawesome/fontawesome-svg-core", "aurelia-framework", "./co
                     aurelia_framework_1.bindable
                 ], FontAwesomeIconCustomElement.prototype, "listItem", void 0);
                 __decorate([
-                    aurelia_framework_1.bindable({ changeHandler: 'replaceIcon' })
+                    aurelia_framework_1.bindable
                 ], FontAwesomeIconCustomElement.prototype, "mask", void 0);
                 __decorate([
                     aurelia_framework_1.bindable
@@ -265,22 +267,22 @@ System.register(["@fortawesome/fontawesome-svg-core", "aurelia-framework", "./co
                     aurelia_framework_1.bindable
                 ], FontAwesomeIconCustomElement.prototype, "spin", void 0);
                 __decorate([
-                    aurelia_framework_1.bindable({ changeHandler: 'replaceIcon' })
+                    aurelia_framework_1.bindable
                 ], FontAwesomeIconCustomElement.prototype, "style", void 0);
                 __decorate([
-                    aurelia_framework_1.bindable({ changeHandler: 'replaceIcon' })
+                    aurelia_framework_1.bindable
                 ], FontAwesomeIconCustomElement.prototype, "symbol", void 0);
                 __decorate([
-                    aurelia_framework_1.bindable({ changeHandler: 'replaceIcon' })
+                    aurelia_framework_1.bindable
                 ], FontAwesomeIconCustomElement.prototype, "title", void 0);
                 __decorate([
-                    aurelia_framework_1.bindable({ changeHandler: 'replaceIcon' })
+                    aurelia_framework_1.bindable
                 ], FontAwesomeIconCustomElement.prototype, "transform", void 0);
                 __decorate([
                     aurelia_framework_1.bindable
                 ], FontAwesomeIconCustomElement.prototype, "stack", void 0);
                 FontAwesomeIconCustomElement = __decorate([
-                    aurelia_framework_1.customElement('font-awesome-icon'),
+                    aurelia_framework_1.customElement('font-awesome-icon-classes'),
                     aurelia_framework_1.noView()
                 ], FontAwesomeIconCustomElement);
                 return FontAwesomeIconCustomElement;
