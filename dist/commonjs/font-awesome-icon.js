@@ -268,7 +268,7 @@ var FontAwesomeIconCustomElement = /** @class */ (function () {
         aurelia_framework_1.bindable
     ], FontAwesomeIconCustomElement.prototype, "stack", void 0);
     FontAwesomeIconCustomElement = __decorate([
-        aurelia_framework_1.customElement('font-awesome-icon-classes'),
+        aurelia_framework_1.customElement('font-awesome-icon'),
         aurelia_framework_1.noView()
     ], FontAwesomeIconCustomElement);
     return FontAwesomeIconCustomElement;

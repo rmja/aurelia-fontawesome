@@ -266,7 +266,7 @@ var FontAwesomeIconCustomElement = /** @class */ (function () {
         bindable
     ], FontAwesomeIconCustomElement.prototype, "stack", void 0);
     FontAwesomeIconCustomElement = __decorate([
-        customElement('font-awesome-icon-classes'),
+        customElement('font-awesome-icon'),
         noView()
     ], FontAwesomeIconCustomElement);
     return FontAwesomeIconCustomElement;

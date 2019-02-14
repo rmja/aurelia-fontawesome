@@ -256,7 +256,7 @@ __decorate([
     bindable
 ], FontAwesomeIconCustomElement.prototype, "stack", void 0);
 FontAwesomeIconCustomElement = __decorate([
-    customElement('font-awesome-icon-classes'),
+    customElement('font-awesome-icon'),
     noView()
 ], FontAwesomeIconCustomElement);
 export { FontAwesomeIconCustomElement };
