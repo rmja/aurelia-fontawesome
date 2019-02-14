@@ -190,7 +190,9 @@ define(["require", "exports", "aurelia-framework", "@fortawesome/fontawesome-svg
             return {
                 $icon: $icon,
                 dispose: function () {
-                    slot.remove(view);
+                    // It may be that the view is already removed from the slot,
+                    // e.g. if the element has an if.bind
+                    slot.removeAll();
                     view.unbind();
                 }
             };
