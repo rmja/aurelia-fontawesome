@@ -13,7 +13,7 @@ export declare class FontAwesomeIconCustomElement {
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/bordered-pulled-icons}
      */
-    border: boolean | 'true' | 'false';
+    border: boolean;
     /**
      * Your own class name that will be added to the SVGElement
      */
@@ -28,7 +28,7 @@ export declare class FontAwesomeIconCustomElement {
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/icons-in-a-list}
      */
-    listItem: boolean | 'true' | 'false';
+    listItem: boolean;
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/masking}
      */
@@ -37,7 +37,7 @@ export declare class FontAwesomeIconCustomElement {
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/animating-icons}
      */
-    pulse: boolean | 'true' | 'false';
+    pulse: boolean;
     /**
      * {@link https://fontawesome.com/how-to-use/on-the-web/styling/rotating-icons}
      */

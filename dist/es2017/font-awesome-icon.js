@@ -72,14 +72,14 @@ let FontAwesomeIconCustomElement = class FontAwesomeIconCustomElement {
         this.bindingContext = bindingContext;
         this.overrideContext = createOverrideContext(bindingContext, overrideContext);
         this.classes = {
-            'fa-border': this.border && this.border.toString() === 'true',
+            'fa-border': this.border,
             'fa-flip-horizontal': this.flip === 'horizontal' || this.flip === 'both',
             'fa-flip-vertical': this.flip === 'vertical' || this.flip === 'both',
-            'fa-fw': this.fixedWidth && this.fixedWidth.toString() === 'true',
-            'fa-inverse': this.inverse && this.inverse.toString() === 'true',
-            'fa-li': this.listItem && this.listItem.toString() === 'true',
-            'fa-pulse': this.pulse && this.pulse.toString() === 'true',
-            'fa-spin': this.spin && this.spin.toString() === 'true',
+            'fa-fw': this.fixedWidth,
+            'fa-inverse': this.inverse,
+            'fa-li': this.listItem,
+            'fa-pulse': this.pulse,
+            'fa-spin': this.spin,
             [`fa-${this.size}`]: !!this.size,
             [`fa-pull-${this.pull}`]: !!this.pull,
             [`fa-rotate-${this.rotation}`]: !!this.rotation,
