@@ -68,6 +68,7 @@ export declare class FontAwesomeIconCustomElement {
     private overrideContext;
     private classes;
     private slot;
+    private $icon;
     private logger;
     constructor($element: Element, container: Container, viewCompiler: ViewCompiler, resources: ViewResources);
     bind(bindingContext: any, overrideContext: OverrideContext): void;

@@ -173,22 +173,17 @@ var FontAwesomeIconCustomElement = /** @class */ (function () {
         }
     };
     FontAwesomeIconCustomElement.prototype.replaceClass = function (newClass, oldClass) {
-        var svgElement = this.$element.querySelector('svg');
-        if (!svgElement) {
-            this.logger.error('Unable to find svg element');
-            return;
-        }
-        if (oldClass && newClass !== oldClass && svgElement.classList.contains(oldClass)) {
-            svgElement.classList.remove(oldClass);
+        if (oldClass && newClass !== oldClass && this.$icon.classList.contains(oldClass)) {
+            this.$icon.classList.remove(oldClass);
         }
         if (newClass) {
-            svgElement.classList.add(newClass);
+            this.$icon.classList.add(newClass);
         }
     };
     FontAwesomeIconCustomElement.prototype.compile = function (abstract) {
-        var $icon = converter_1.default(aurelia_framework_1.DOM.createElement.bind(aurelia_framework_1.DOM), abstract);
+        this.$icon = converter_1.default(aurelia_framework_1.DOM.createElement.bind(aurelia_framework_1.DOM), abstract);
         var $i = aurelia_framework_1.DOM.createElement('i');
-        $i.innerHTML = $icon.outerHTML;
+        $i.innerHTML = this.$icon.outerHTML;
         var factory = this.viewCompiler.compile($i, this.resources);
         var view = factory.create(this.container, this.bindingContext);
         this.slot.add(view);
